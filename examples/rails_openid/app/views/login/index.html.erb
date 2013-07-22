@@ -27,7 +27,7 @@ platform to demonstrate, but the library code is not Rails specific.</p>
     run another instance of the example on another port if you want to use
     a relying party to use with this example provider:</p>
     <blockquote>
-    <code>script/server --port=3001</code>
+    <code>bundle exec rails s -p 3001 -P tmp/pids/server2.pid</code>
     </blockquote>
 
     <p>(The RP needs to be able to access the provider, so unless you're

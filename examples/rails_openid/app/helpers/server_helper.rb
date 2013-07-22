@@ -2,7 +2,7 @@
 module ServerHelper
 
   def url_for_user
-    url_for :controller => 'user', :action => session[:username]
+    server_user_page_url(username: session[:username])
   end
 
 end

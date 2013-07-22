@@ -63,6 +63,7 @@ RailsOpenid::Application.routes.draw do
   get  'logout' => 'login#logout'
   post 'login/submit' => 'login#submit'
 
+  post 'server/decision' => 'server#decision'
   get  'server' => 'server#index'
   post 'server' => 'server#index'
   #map.connect 'server/xrds', :controller => 'server', :action => 'idp_xrds'

@@ -11,6 +11,10 @@
 /db/*.sqlite3
 /db/*.sqlite3-journal
 
+# Ignore cstore and openid-store
+/db/cstore/*
+/db/openid-store/*
+
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp

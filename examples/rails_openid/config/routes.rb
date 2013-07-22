@@ -54,16 +54,25 @@ RailsOpenid::Application.routes.draw do
   #     resources :products
   #   end
 
-  root  'login#index'
+  root 'login#index'
 
+  get  'consumer' => 'consumer#index'
+  get  'consumer/complete' => 'consumer#complete'
+  post 'consumer/start' => 'consumer#start'
+
+  get  'logout' => 'login#logout'
+  post 'login/submit' => 'login#submit'
+
+  get  'server' => 'server#index'
+  post 'server' => 'server#index'
   #map.connect 'server/xrds', :controller => 'server', :action => 'idp_xrds'
   get "server/xrds" => 'server#idp_xrds'
 
   #map.connect 'user/:username', :controller => 'server', :action => 'user_page'
-  get 'user/:username' => 'serer#user_page'
+  get 'user/:username' => 'server#user_page', as: :server_user_page
 
   #map.connect 'user/:username/xrds', :controller => 'server', :action => 'user_xrds'
-  get 'user/:username/xrds' => 'server#user_xrds'
+  get 'user/:username/xrds' => 'server#user_xrds', as: :server_user_xrds
 
   # Allow downloading Web Service WSDL as a file with an extension
   # instead of a file named 'wsdl'

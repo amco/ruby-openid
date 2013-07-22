@@ -1,16 +1,11 @@
-
-
 <% if session[:username].nil? %>
-
-<div id="login-form">
-  <form method="get" action="<%= url_for :controller => 'login', :action => 'submit' %>">
-Type a username: 
-  <input type="text" name="username" />
-  <input type="submit" value="Log In" />
-  </form>
-
-</div>
-
+  <div id="login-form">
+    <%= form_tag login_submit_path do %>
+      Type a username:
+      <%= text_field_tag :username %>
+      <%= submit_tag "Log In" %>
+    <% end %>
+  </div>
 <% end %>
 
 <p> Welcome to the Ruby OpenID example.  This code is a starting point
@@ -50,7 +45,7 @@ platform to demonstrate, but the library code is not Rails specific.</p>
 
 <h2>To use the example relying party</h2>
 
-<p>Visit <a href="<%= url_for :controller => 'consumer' %>">/consumer</a>
+<p>Visit <%= link_to "/consumer", consumer_path %>
 and enter your OpenID.</p>
 </p>
 

@@ -96,11 +96,12 @@ class ServerController < ApplicationController
     end
 
     # content negotiation failed, so just render the user page
-    xrds_url = url_for(:controller=>'user',:action=>params[:username])+'/xrds'
+    # xrds_url = url_for(:controller=>'user',:action=>params[:username])+'/xrds'
+    xrds_url = server_user_xrds_path(username: params[:username])
     identity_page = <<EOS
 <html><head>
 <meta http-equiv="X-XRDS-Location" content="#{xrds_url}" />
-<link rel="openid.server" href="#{url_for :action => 'index'}" />
+<link rel="openid.server" href="#{server_url}" />
 </head><body><p>OpenID identity page for #{params[:username]}</p>
 </body></html>
 EOS
@@ -170,7 +171,7 @@ EOS
   def server
     if @server.nil?
       server_url = url_for :action => 'index', :only_path => false
-      dir = Pathname.new(RAILS_ROOT).join('db').join('openid-store')
+      dir = Pathname.new(Rails.root).join('db').join('openid-store')
       store = OpenID::Store::Filesystem.new(dir)
       @server = Server.new(store, server_url)
     end

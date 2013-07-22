@@ -31,7 +31,7 @@ class LoginController < ApplicationController
     else
       flash[:error] = "Sorry, couldn't log you in. Try again."
     end
-    
+
     redirect_to :action => 'index'
   end
 
@@ -39,7 +39,7 @@ class LoginController < ApplicationController
     # delete the username from the session hash
     session[:username] = nil
     session[:approvals] = nil
-    redirect_to :action => 'index'
+    redirect_to root_path
   end
 
 end

@@ -42,11 +42,9 @@
   </style>
   <body>
 
-
-
     <% if session[:username] %>
       <div style="float:right;">
-        Welcome, <%= session[:username] %> | <%= link_to('Log out', :controller => 'login', :action => 'logout') %><br />
+        Welcome, <%= session[:username] %> | <%= link_to('Log out', logout_path) %><br />
 	<span class="openid"><%= @base_url %>user/<%= session[:username] %></span>
       </div>
     <% end %>
@@ -61,8 +59,7 @@
      </div>
     <% end %>
 
-    <%= @content_for_layout %>
-
+    <%= yield %>
 
   </body>
 </html>

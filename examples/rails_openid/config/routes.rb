@@ -1,24 +1,74 @@
-ActionController::Routing::Routes.draw do |map|
-  # Add your own custom routes here.
+RailsOpenid::Application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
-  
-  # Here's a sample route:
-  # map.connect 'products/:id', :controller => 'catalog', :action => 'view'
-  # Keep in mind you can assign values other than :controller and :action
+  # See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed by hooking up '' 
-  # -- just remember to delete public/index.html.
-  # map.connect '', :controller => "welcome"
+  # You can have the root of your site routed with "root"
+  # root 'welcome#index'
 
-  map.connect '', :controller => 'login'
-  map.connect 'server/xrds', :controller => 'server', :action => 'idp_xrds'
-  map.connect 'user/:username', :controller => 'server', :action => 'user_page'
-  map.connect 'user/:username/xrds', :controller => 'server', :action => 'user_xrds'
+  # Example of regular route:
+  #   get 'products/:id' => 'catalog#view'
+
+  # Example of named route that can be invoked with purchase_url(id: product.id)
+  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+
+  # Example resource route (maps HTTP verbs to controller actions automatically):
+  #   resources :products
+
+  # Example resource route with options:
+  #   resources :products do
+  #     member do
+  #       get 'short'
+  #       post 'toggle'
+  #     end
+  #
+  #     collection do
+  #       get 'sold'
+  #     end
+  #   end
+
+  # Example resource route with sub-resources:
+  #   resources :products do
+  #     resources :comments, :sales
+  #     resource :seller
+  #   end
+
+  # Example resource route with more complex sub-resources:
+  #   resources :products do
+  #     resources :comments
+  #     resources :sales do
+  #       get 'recent', on: :collection
+  #     end
+  #   end
+
+  # Example resource route with concerns:
+  #   concern :toggleable do
+  #     post 'toggle'
+  #   end
+  #   resources :posts, concerns: :toggleable
+  #   resources :photos, concerns: :toggleable
+
+  # Example resource route within a namespace:
+  #   namespace :admin do
+  #     # Directs /admin/products/* to Admin::ProductsController
+  #     # (app/controllers/admin/products_controller.rb)
+  #     resources :products
+  #   end
+
+  root  'login#index'
+
+  #map.connect 'server/xrds', :controller => 'server', :action => 'idp_xrds'
+  match "server/xrds" => 'server#idp_xrds'
+
+  #map.connect 'user/:username', :controller => 'server', :action => 'user_page'
+  match 'user/:username' => 'serer#user_page'
+
+  #map.connect 'user/:username/xrds', :controller => 'server', :action => 'user_xrds'
+  match 'user/:username/xrds' => 'server#user_xrds'
 
   # Allow downloading Web Service WSDL as a file with an extension
   # instead of a file named 'wsdl'
-  map.connect ':controller/service.wsdl', :action => 'wsdl'
+  #map.connect ':controller/service.wsdl', :action => 'wsdl'
 
   # Install the default route as the lowest priority.
-  map.connect ':controller/:action/:id'
+  #map.connect ':controller/:action/:id'
 end

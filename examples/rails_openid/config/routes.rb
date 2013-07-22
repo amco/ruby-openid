@@ -57,13 +57,13 @@ RailsOpenid::Application.routes.draw do
   root  'login#index'
 
   #map.connect 'server/xrds', :controller => 'server', :action => 'idp_xrds'
-  match "server/xrds" => 'server#idp_xrds'
+  get "server/xrds" => 'server#idp_xrds'
 
   #map.connect 'user/:username', :controller => 'server', :action => 'user_page'
-  match 'user/:username' => 'serer#user_page'
+  get 'user/:username' => 'serer#user_page'
 
   #map.connect 'user/:username/xrds', :controller => 'server', :action => 'user_xrds'
-  match 'user/:username/xrds' => 'server#user_xrds'
+  get 'user/:username/xrds' => 'server#user_xrds'
 
   # Allow downloading Web Service WSDL as a file with an extension
   # instead of a file named 'wsdl'
